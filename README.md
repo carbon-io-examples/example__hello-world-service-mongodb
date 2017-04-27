@@ -27,6 +27,16 @@ __(function() {
   module.exports = o({
     _type: carbon.carbond.Service,
     description: "Advanced hello-world service using MongoDB.",
+    environmentVariables: {
+      MONGODB_URI: {
+        help: "MongoDB connection string URI",
+        required: false
+      },
+      LOCALE: {
+        help: "Default locale for this service",
+        required: false
+      }
+    },
     port: 8888,
     dbUri: _o('env:MONGODB_URI') || "mongodb://localhost:27017/hello-world",
     defaultLocale: _o('env:LOCALE') || "en",
