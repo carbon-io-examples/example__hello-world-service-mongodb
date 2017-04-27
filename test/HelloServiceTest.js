@@ -33,9 +33,9 @@ __(function() {
       // Greetings in multiple locales
       var greetings = {
         _id: "greetings",
-        en: "Hello",
-        fr: "Bonjour",
-        es: "Hola"
+        en: "Hello world!",
+        fr: "Bonjour le monde!",
+        es: "Hola mundo!"
       }
       this.service.db.command({dropDatabase: 1})
       this.service.db.getCollection("hello-config").insert(greetings)
@@ -57,34 +57,18 @@ __(function() {
         }
       },
 
-      // Test GET with who parameter
+      // Test GET with locale parameter
       {
         reqSpec: {
           url: '/hello',
           method: "GET",
           parameters: {
-            who: "Addison",
+            locale: "es",
           }
         },
         resSpec: {
           statusCode: 200,
-          body: { msg: "Hello Addison!" }
-        }
-      },
-
-      // Test GET with who parameter in fr locale
-      {
-        reqSpec: {
-          url: '/hello',
-          method: "GET",
-          parameters: {
-            who: "Natalie",
-            locale: "fr"
-          }
-        },
-        resSpec: {
-          statusCode: 200,
-          body: { msg: "Bonjour Natalie!" }
+          body: { msg: "Hola mundo!" }
         }
       },
 
@@ -97,9 +81,9 @@ __(function() {
         resSpec: {
           statusCode: 200,
           body: {
-            en: "Hello",
-            fr: "Bonjour",
-            es: "Hola"
+            en: "Hello world!",
+            fr: "Bonjour le monde!",
+            es: "Hola mundo!"
           } 
         }
       },
@@ -107,12 +91,12 @@ __(function() {
       // Test GET on /greetings/es
       {
         reqSpec: {
-          url: '/greetings/es',
+          url: '/greetings/fr',
           method: "GET",
         },
         resSpec: {
           statusCode: 200,
-          body: { greeting: "Hola" }
+          body: { greeting: "Bonjour le monde!" }
         }
       },
 
