@@ -9,13 +9,13 @@ This example illustrates:
 * how to build services with multiple endpoints using multiple modules / source files
 * how to interact with MongoDB 
 * the use of exceptions for communicating HTTP errors to the client
-* the use of path parameters
+* the use of sub-endpoints and path parameters
 * the use of environment variables
 
 The code defining the top level service is located in ```lib/HelloService.js```. This service has two 
 endpoints, each of which is defined in its own module. 
 
-The top-level service:
+### The top-level service:
 
 ```javascript
 __(function() {
@@ -32,6 +32,126 @@ __(function() {
   })
 })
 
+```
+
+### HelloEndpoint
+
+```javascript
+__(function() {
+  module.exports = o({
+    _type: carbon.carbond.Endpoint,
+    get: {
+      parameters: { 
+        locale: {
+          location: 'query',
+          required: false,
+          default: 'en',
+          schema: { type: 'string' }
+        }
+      },
+      
+      responses: [
+        {
+          statusCode: 200,
+          description: "Success",
+          schema: {
+            type: 'object',
+            properties: {
+              msg: { type: 'string' }
+            },
+            required: [ 'msg' ],
+            additionalProperties: false
+          }
+        }
+      ],
+      
+      service: function(req) {
+        var greeting = "Hello world!" // default
+        
+        // Find the config in the database that maps locales to greetings
+        var greetings = this.getService().db.getCollection("hello-config").findOne({_id: 'greetings'})
+        if (greetings) {
+          locale = req.parameters.locale || this.getService().defaultLocale
+          greeting = greetings[req.parameters.locale] || greeting
+        }
+        
+        return { msg: greeting }
+      }
+    }
+  })
+})
+
+```
+
+### GreetingsEndpoint
+
+```javascript
+__(function() {
+  module.exports = o({
+    _type: carbon.carbond.Endpoint,
+    get: {
+      responses: [
+        {
+          statusCode: 200,
+          description: "Success",
+          schema: {
+            type: 'object',
+            additionalProperties: true
+          }
+        }
+      ],
+      
+      service: function(req) {
+        var result = this.getService().db.getCollection("hello-config").findOne({_id: 'greetings'})
+        delete result['_id']
+        return result
+      }
+    },
+
+    endpoints: {
+      ":locale": o({
+        _type: carbon.carbond.Endpoint,
+        get: {
+          parameters: {
+            locale: {
+              location: 'path',
+              required: 'true',
+              schema: { type: 'string' }
+            }
+          },
+          responses: [
+            {
+              statusCode: 200,
+              description: "Success",
+              schema: {
+                type: 'object',
+                properties: {
+                  greeting: { type: 'string' }
+                },
+                required: [ 'greeting' ],
+                additionalProperties: false
+              }
+            }
+          ],
+          
+          service: function(req) {
+            var greetings = this.getService().db.getCollection("hello-config").findOne({_id: 'greetings'})
+            if (!greetings) {
+              throw new carbon.HttpErrors.InternalServerError("Database misconfiguration")
+            }
+
+            var locale = req.parameters.locale
+            var greeting = greetings[locale]
+            if (!greeting) {
+              throw new carbon.HttpErrors.NotFound(`Cannot find greeting for locale ${locale}`)
+            }
+            return { greeting: greeting }
+          }
+        }
+      })
+    }                  
+  })
+})
 ```
 
 ## Installing the service
