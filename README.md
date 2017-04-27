@@ -15,7 +15,12 @@ This example illustrates:
 The code defining the top level service is located in ```lib/HelloService.js```. This service has two 
 endpoints, each of which is defined in its own module. 
 
-### The top-level service:
+## The top-level service
+
+There are a few things of note here:
+
+1. We define and use two environment variables in this service: ```MONGODB_URI``` and ```LOCALE```. 
+2. This service is composed of many endpoints, each of which are defined elsewhere. This is how larger projects are maintained. 
 
 ```javascript
 __(function() {
@@ -34,7 +39,7 @@ __(function() {
 
 ```
 
-### HelloEndpoint
+## HelloEndpoint
 
 ```javascript
 __(function() {
@@ -83,7 +88,7 @@ __(function() {
 
 ```
 
-### GreetingsEndpoint
+## GreetingsEndpoint
 
 ```javascript
 __(function() {
