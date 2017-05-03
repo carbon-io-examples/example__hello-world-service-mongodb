@@ -194,19 +194,21 @@ For cmdline help:
 % node lib/HelloService -h
 ```
 
+## Accessing the service
+
 To access the ```/hello``` endpoint:
 
 ```
-% curl localhost:888/hello 
+% curl localhost:8888/hello 
 { msg: "Hello world!" }
 
-% curl localhost:888/hello?locale=es
+% curl localhost:8888/hello?locale=es
 { msg: "Hola mundo!" }
 ```
 To access the ```/greetings``` endpoint:
 
 ```
-% curl localhost:888/greetings 
+% curl localhost:8888/greetings 
 {"en":"Hello world!","fr":"Bonjour le monde!","es":"Hola mundo!"}
 ```
 
