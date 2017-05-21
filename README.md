@@ -1,9 +1,9 @@
 # Hello Service (mongodb)
 
-This example builds on our hello world examples:
+This example builds on our other hello world examples:
 
 * [Our simple hello-world example](https://github.com/carbon-io/example__hello-world-service)
-* [Our advanced hello-world example](https://github.com/carbon-io/example__hello-world-service-advanced)
+* [Our parameter parsing hello-world example](https://github.com/carbon-io/example__hello-world-service-parameter-parsing)
 
 This example illustrates:
 * how to build services with multiple endpoints using multiple modules / source files
