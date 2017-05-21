@@ -1,4 +1,4 @@
-# Hello Service (advanced mongodb)
+# Hello Service (mongodb)
 
 This example builds on our hello world examples:
 
