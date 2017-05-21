@@ -180,6 +180,16 @@ with the code.
 % npm install
 ```
 
+## Setting up your environment
+
+This example expects a running MongoDB database. The code will honor a ```MONGODB_URI``` environment variable. The default URI is
+```mongodb://localhost:27017/contacts```.
+
+To set the environment variable to point the app at a database different from the default (on Mac):
+```
+export MONGODB_URI=mongodb://localhost:27017/mydb
+```
+
 ## Running the service
 
 To run the service:
