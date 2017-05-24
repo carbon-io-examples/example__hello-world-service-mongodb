@@ -212,7 +212,7 @@ To access the ```/hello``` endpoint:
 % curl localhost:8888/hello 
 { msg: "Hello world!" }
 
-% curl localhost:8888/hello?locale=es
+% curl 'localhost:8888/hello?locale=es'
 { msg: "Hola mundo!" }
 ```
 To access the ```/greetings``` endpoint:
