@@ -175,7 +175,7 @@ We encourage you to clone the git repository so you can play around
 with the code. 
 
 ```
-$ git clone -b carbon-0.7 -b carbon-0.7 -b carbon-0.7 git@github.com:carbon-io-examples/example__hello-world-service-mongodb.git
+$ git clone -b carbon-0.7 -b carbon-0.7 git@github.com:carbon-io-examples/example__hello-world-service-mongodb.git
 $ cd example__hello-world-service-mongodb
 $ npm install
 ```
