@@ -2,8 +2,8 @@
 
 This example builds on our other hello world examples:
 
-* [Our simple hello-world example](https://github.com/carbon-io/example__hello-world-service)
-* [Our parameter parsing hello-world example](https://github.com/carbon-io/example__hello-world-service-parameter-parsing)
+* [Our simple hello-world example](https://github.com/carbon-io-examples/example__hello-world-service)
+* [Our parameter parsing hello-world example](https://github.com/carbon-io-examples/example__hello-world-service-parameter-parsing)
 
 This example illustrates:
 * how to build services with multiple endpoints using multiple modules / source files
@@ -187,7 +187,7 @@ This example expects a running MongoDB database. The code will honor a ```MONGOD
 
 To set the environment variable to point the app at a database different from the default (on Mac):
 ```
-export MONGODB_URI=mongodb://localhost:27017/mydb
+$ export MONGODB_URI=mongodb://localhost:27017/mydb
 ```
 
 ## Running the service
@@ -238,6 +238,14 @@ $ npm test
 ```
 
 ## Generating API documentation (aglio flavor)
+
+To generate documentation using aglio, install it as a devDependency:
+
+```
+$ npm install -D --no-optional aglio
+```
+
+Using `--no-optional` speeds up aglio's install time significantly. Then generate the docs using this command:
 
 ```sh
 $ node lib/HelloService gen-static-docs --flavor aglio --out docs/index.html
