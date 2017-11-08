@@ -1,6 +1,6 @@
 # Hello Service (mongodb)
 
-[![Build Status](https://img.shields.io/travis/carbon-io-examples/example__hello-world-service-mongodb/carbon-0.6.svg?style=flat-square)](https://travis-ci.org/carbon-io-examples/example__hello-world-service-mongodb)
+[![Build Status](https://img.shields.io/travis/carbon-io-examples/example__hello-world-service-mongodb/carbon-0.6.svg?style=flat-square)](https://travis-ci.org/carbon-io-examples/example__hello-world-service-mongodb) ![Carbon Version](https://img.shields.io/badge/carbon--io-0.6-blue.svg?style=flat-square)
 
 This example builds on our other hello world examples:
 
