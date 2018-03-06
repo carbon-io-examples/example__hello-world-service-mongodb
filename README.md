@@ -11,20 +11,20 @@ This example builds on our other hello world examples:
 
 This example illustrates:
 * how to build services with multiple endpoints using multiple modules / source files
-* how to interact with MongoDB 
+* how to interact with MongoDB
 * the use of exceptions for communicating HTTP errors to the client
 * the use of sub-endpoints and path parameters
 * the use of environment variables
 
-The code defining the top level service is located in ```lib/HelloService.js```. This service has two 
-endpoints, each of which is defined in its own module. 
+The code defining the top level service is located in ```lib/HelloService.js```. This service has two
+endpoints, each of which is defined in its own module.
 
 ## The top-level service
 
 There are a few things of note here:
 
-1. We define and use two environment variables in this service: ```MONGODB_URI``` and ```LOCALE```. 
-2. This service is composed of many endpoints, each of which are defined elsewhere. This is how larger projects are maintained. 
+1. We define and use two environment variables in this service: ```MONGODB_URI``` and ```LOCALE```.
+2. This service is composed of many endpoints, each of which are defined elsewhere. This is how larger projects are maintained.
 
 ```javascript
 __(function() {
@@ -60,7 +60,7 @@ __(function() {
   module.exports = o({
     _type: carbon.carbond.Endpoint,
     get: {
-      parameters: { 
+      parameters: {
         locale: {
           location: 'query',
           required: false,
@@ -176,7 +176,7 @@ __(function() {
 ## Installing the service
 
 We encourage you to clone the git repository so you can play around
-with the code. 
+with the code.
 
 ```
 $ git clone -b carbon-0.7 git@github.com:carbon-io-examples/example__hello-world-service-mongodb.git
@@ -213,7 +213,7 @@ $ node lib/HelloService -h
 To access the ```/hello``` endpoint:
 
 ```
-$ curl localhost:8888/hello 
+$ curl localhost:8888/hello
 { msg: "Hello world!" }
 
 $ curl 'localhost:8888/hello?locale=es'
@@ -222,20 +222,20 @@ $ curl 'localhost:8888/hello?locale=es'
 To access the ```/greetings``` endpoint:
 
 ```
-$ curl localhost:8888/greetings 
+$ curl localhost:8888/greetings
 {"en":"Hello world!","fr":"Bonjour le monde!","es":"Hola mundo!"}
 ```
 
 
 ## Running the unit tests
 
-This example comes with a simple unit test written in Carbon.io's test framework called TestTube. It is located in the ```test``` directory. 
+This example comes with a simple unit test written in Carbon.io's test framework called TestTube. It is located in the ```test``` directory.
 
 ```
 $ node test/HelloServiceTest
 ```
 
-or 
+or
 
 ```
 $ npm test
